@@ -810,28 +810,7 @@ export default function PixelTimer({ subjects, setSubjects, onStudyUpdate, theme
                 </div>
             </div>
 
-            {/* Status Text - Cores Vibrantes ou Branco */}
-            <div 
-                className={`mt-4 text-sm tracking-widest ${!isActive && !isPaused ? 'animate-pulse' : ''}`}
-                style={{ 
-                    fontFamily: THEME.font, 
-                    color: isMinimalist 
-                        ? '#FFF' 
-                        : (isNeutral 
-                            ? (neutralPalette === 'dark' 
-                                ? (timeLeft === 0 ? '#C07070' : isBreakMode ? '#80B080' : (isPaused ? '#B0B0B0' : '#E0E0E0'))
-                                : '#404040')
-                            : (timeLeft === 0 ? '#FF3030' : isBreakMode ? '#40FF40' : (isPaused ? '#FFFF00' : '#fff'))),
-                    textShadow: (isMinimalist || isNeutral) ? 'none' : '2px 2px 0px #000'
-                }}
-            >
-                {
-                    timeLeft === 0 ? '!!! TIME OVER !!!' : 
-                    isPaused ? '&gt;&gt;&gt; PAUSED &lt;&lt;&lt;' :
-                    isActive ? (isBreakMode ? 'RECHARGING...' : '&gt;&gt;&gt; STUDYING &gt;&gt;&gt;') : 
-                    'PRESS START'
-                }
-            </div>
+
 
             {/* Controls */}
             <div className="flex flex-col gap-4 items-center w-full mt-6">

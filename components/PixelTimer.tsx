@@ -730,14 +730,7 @@ export default function PixelTimer({ subjects, setSubjects, onStudyUpdate, theme
                  </button>
             </div>
             
-            {/* Nome da Missão Atual - SÓ EXIBE SE FOR MODO DESCANSO */}
-            {(isActive || isPaused) && isBreakMode && (
-                <div className={`mb-4 px-4 py-2 rounded-full border-2 border-white/20 backdrop-blur-md ${isMinimalist ? 'bg-black border-white' : (isNeutral ? 'bg-[#90B090] border-white' : 'bg-green-900/50')}`}>
-                    <span className={`text-xs tracking-widest ${isMinimalist ? 'text-white' : (isNeutral ? 'text-white' : 'text-green-300')}`} style={{ fontFamily: THEME.font }}>
-                        &gt;&gt;&gt; REST MODE &lt;&lt;&lt;
-                    </span>
-                </div>
-            )}
+
 
             {/* Timer Text - Cores Vibrantes/Neon */}
             <div className="mb-6 relative group flex items-center justify-center gap-6">

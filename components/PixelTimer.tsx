@@ -465,12 +465,13 @@ export default function PixelTimer({ subjects, setSubjects, onStudyUpdate, theme
              style={{ backgroundColor: colors.ui.background, boxShadow: '8px 8px 0px rgba(0,0,0,0.5)', borderColor: isMinimalist ? '#FFF' : '#000' }}>
             <div className="p-6 flex flex-col gap-6 items-center">
                 <h3 
-                    className="text-center text-3xl mb-2 tracking-wide whitespace-nowrap" 
+                    className="text-center text-3xl mb-2 tracking-wide w-full" 
                     style={{ 
                         fontFamily: THEME.font, 
                         color: isMinimalist ? '#FFF' : (isNeutral ? '#808080' : '#FFD700'), 
                         textShadow: (isMinimalist || isNeutral) ? 'none' : '3px 3px 0 #000',
-                        WebkitTextStroke: isMinimalist ? '0px' : '1.5px #000'
+                        WebkitTextStroke: isMinimalist ? '0px' : '1px #000',
+                        letterSpacing: '0.05em'
                     }}
                 >
                     COURSE CLEAR!

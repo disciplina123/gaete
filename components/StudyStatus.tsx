@@ -16,6 +16,9 @@ export default function StudyStatus({ subjects, studyLog, questionLog, subjectTi
   const colors = getThemeColors(themeMode, neutralPalette);
   const isMinimalist = themeMode === 'minimalist';
   const isNeutral = themeMode === 'neutral';
+  
+  // State for expanded subjects
+  const [expandedSubjects, setExpandedSubjects] = React.useState<Record<number, boolean>>({});
 
   // Calculate general statistics
   const stats = useMemo(() => {
@@ -105,6 +108,34 @@ export default function StudyStatus({ subjects, studyLog, questionLog, subjectTi
       const m = totalMins % 60;
       if (h > 0) return `${h}h ${m}m`;
       return `${m}m`;
+  };
+  
+  // Toggle subject expansion
+  const toggleSubject = (subjectId: number) => {
+    setExpandedSubjects(prev => ({
+      ...prev,
+      [subjectId]: !prev[subjectId]
+    }));
+  };
+  
+  // Calculate detailed stats for a subject
+  const getSubjectDetailedStats = (subject: Subject) => {
+    const sStats = stats.subjectStats[subject.title] || { totalQuests: 0, completedQuests: 0 };
+    const percentage = sStats.totalQuests > 0 
+      ? Math.round((sStats.completedQuests / sStats.totalQuests) * 100) 
+      : 0;
+    const displayTime = subjectTimeLog[subject.id] || 0;
+    const hours = Math.floor(displayTime / 60);
+    const minutes = displayTime % 60;
+    
+    return {
+      percentage,
+      totalQuests: sStats.totalQuests,
+      completedQuests: sStats.completedQuests,
+      hours,
+      minutes,
+      totalMinutes: displayTime
+    };
   };
 
   // Styles helpers
@@ -276,89 +307,142 @@ export default function StudyStatus({ subjects, studyLog, questionLog, subjectTi
             )}
 
             {subjects.map((subject, subjectIndex) => {
-                const sStats = stats.subjectStats[subject.title] || { totalQuests: 0, completedQuests: 0 };
-                const percentage = sStats.totalQuests > 0 
-                    ? Math.round((sStats.completedQuests / sStats.totalQuests) * 100) 
-                    : 0;
-                
-                // Real Data Only - No Mocks
-                const displayTime = subjectTimeLog[subject.id] || 0;
+                const detailedStats = getSubjectDetailedStats(subject);
+                const isExpanded = expandedSubjects[subject.id];
                 
                 return (
                     <div key={subject.id} 
-                         className="relative p-4 border-4 rounded-xl transition-transform hover:-translate-y-1"
+                         className="relative border-4 rounded-xl transition-all"
                          style={{ 
-                             backgroundColor: isMinimalist ? '#111' : (isNeutral ? '#F5F5F5' : '#FFFFCE'), // Yellow cream background like map levels
+                             backgroundColor: isMinimalist ? '#111' : (isNeutral ? '#F5F5F5' : '#FFFFCE'),
                              borderColor: isMinimalist ? '#FFF' : '#000',
                              boxShadow: isMinimalist ? '4px 4px 0 #FFF' : '8px 8px 0 rgba(0,0,0,0.4)'
                          }}>
                         
-                        {/* Header Row */}
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
-                            <span className="font-bold text-lg md:text-xl truncate pr-2 uppercase drop-shadow-sm" 
-                                  style={{ fontFamily: THEME.font, color: isMinimalist ? '#FFF' : '#000' }}>
-                                {subject.title}
-                            </span>
+                        {/* Clickable Header */}
+                        <button
+                            onClick={() => toggleSubject(subject.id)}
+                            className="w-full p-4 text-left transition-transform hover:-translate-y-1"
+                        >
+                            {/* Header Row */}
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+                                <div className="flex items-center gap-3">
+                                    <span className="font-bold text-lg md:text-xl truncate pr-2 uppercase drop-shadow-sm" 
+                                          style={{ fontFamily: THEME.font, color: isMinimalist ? '#FFF' : '#000' }}>
+                                        {subject.title}
+                                    </span>
+                                    {/* Expand/Collapse Icon */}
+                                    <svg 
+                                        width="20" 
+                                        height="20" 
+                                        viewBox="0 0 24 24" 
+                                        fill="none"
+                                        className="transition-transform duration-300"
+                                        style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                                    >
+                                        <path d="M7 10L12 15L17 10" stroke={isMinimalist ? '#FFF' : '#000'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
                             
-                            {/* Badges Container */}
-                            <div className="flex flex-wrap gap-3">
-                                {/* Time Badge */}
-                                <div className="flex items-center gap-2 px-3 py-1.5 border-2 rounded-lg"
-                                     style={{ 
-                                         backgroundColor: isMinimalist ? '#000' : (isNeutral ? '#E0E0E0' : '#4080FF'), // Mario Blue
-                                         borderColor: isMinimalist ? '#FFF' : '#000',
-                                         color: isMinimalist ? '#FFF' : '#FFF',
-                                         boxShadow: isMinimalist ? 'none' : '2px 2px 0 rgba(0,0,0,0.2)'
-                                     }}>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM16.2 16.2L11 13V7H12.5V12.2L17 14.9L16.2 16.2Z" />
-                                    </svg>
-                                    <span style={{ fontFamily: THEME.font, fontSize: '10px' }}>
-                                        {formatHours(displayTime)}
-                                    </span>
+                            {/* Progress Bar Container */}
+                            <div className="relative">
+                                <div className="flex justify-between text-[10px] mb-1 font-bold" style={{ fontFamily: THEME.font, color: isMinimalist ? '#CCC' : '#666' }}>
+                                    <span>PROGRESS</span>
+                                    <span>{detailedStats.percentage}%</span>
                                 </div>
-
-                                {/* Quest Badge */}
-                                <div className="flex items-center gap-2 px-3 py-1.5 border-2 rounded-lg"
+                                <div className="w-full h-6 border-4 rounded-full overflow-hidden relative" 
                                      style={{ 
-                                         backgroundColor: isMinimalist ? '#000' : (isNeutral ? '#D0D0D0' : '#FF9020'), // Orange
-                                         borderColor: isMinimalist ? '#FFF' : '#000',
-                                         color: isMinimalist ? '#FFF' : '#FFF',
-                                         boxShadow: isMinimalist ? 'none' : '2px 2px 0 rgba(0,0,0,0.2)'
+                                         borderColor: isMinimalist ? '#FFF' : '#000', 
+                                         backgroundColor: isMinimalist ? '#000' : '#FFF' 
                                      }}>
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M14.4 6L14 4H5V21H7V14H12.6L13 16H20V6H14.4Z" />
-                                    </svg>
-                                    <span style={{ fontFamily: THEME.font, fontSize: '10px' }}>
-                                        {sStats.completedQuests}/{sStats.totalQuests}
-                                    </span>
+                                    <div className="h-full transition-all duration-1000 ease-out flex items-center justify-end pr-2"
+                                         style={{ 
+                                             width: `${detailedStats.percentage}%`, 
+                                             backgroundColor: isMinimalist ? '#FFF' : (isNeutral ? '#808080' : colors.green.main),
+                                             backgroundImage: (isMinimalist || isNeutral) ? 'none' : `linear-gradient(45deg, rgba(255,255,255,.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, transparent 75%, transparent)`,
+                                             backgroundSize: '1rem 1rem'
+                                         }}
+                                    >
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </button>
                         
-                        {/* Progress Bar Container */}
-                        <div className="relative">
-                            <div className="flex justify-between text-[10px] mb-1 font-bold" style={{ fontFamily: THEME.font, color: isMinimalist ? '#CCC' : '#666' }}>
-                                <span>PROGRESS</span>
-                                <span>{percentage}%</span>
-                            </div>
-                            <div className="w-full h-6 border-4 rounded-full overflow-hidden relative" 
-                                 style={{ 
-                                     borderColor: isMinimalist ? '#FFF' : '#000', 
-                                     backgroundColor: isMinimalist ? '#000' : '#FFF' 
-                                 }}>
-                                <div className="h-full transition-all duration-1000 ease-out flex items-center justify-end pr-2"
-                                     style={{ 
-                                         width: `${percentage}%`, 
-                                         backgroundColor: isMinimalist ? '#FFF' : (isNeutral ? '#808080' : colors.green.main),
-                                         // Striped pattern for cartoon look
-                                         backgroundImage: (isMinimalist || isNeutral) ? 'none' : `linear-gradient(45deg, rgba(255,255,255,.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, transparent 75%, transparent)`,
-                                         backgroundSize: '1rem 1rem'
-                                     }}
-                                >
+                        {/* Expanded Statistics Panel */}
+                        {isExpanded && (
+                            <div className="px-4 pb-4 pt-2 border-t-4" style={{ borderColor: isMinimalist ? '#FFF' : '#000' }}>
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+                                    {/* Percentage Card */}
+                                    <div className="p-3 border-2 rounded-lg text-center" style={{
+                                        backgroundColor: isMinimalist ? '#000' : (isNeutral ? '#E8E8E8' : '#FFE4B5'),
+                                        borderColor: isMinimalist ? '#FFF' : '#000'
+                                    }}>
+                                        <div className="text-xs font-bold mb-2" style={{ fontFamily: THEME.font, color: isMinimalist ? '#AAA' : '#666' }}>
+                                            COMPLETION
+                                        </div>
+                                        <div className="text-3xl font-bold" style={{ 
+                                            fontFamily: THEME.font, 
+                                            color: isMinimalist ? '#FFF' : (isNeutral ? '#000' : colors.green.main),
+                                            textShadow: (isMinimalist || isNeutral) ? 'none' : '2px 2px 0 rgba(0,0,0,0.2)'
+                                        }}>
+                                            {detailedStats.percentage}%
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Total Hours Card */}
+                                    <div className="p-3 border-2 rounded-lg text-center" style={{
+                                        backgroundColor: isMinimalist ? '#000' : (isNeutral ? '#E8E8E8' : '#B0E0E6'),
+                                        borderColor: isMinimalist ? '#FFF' : '#000'
+                                    }}>
+                                        <div className="text-xs font-bold mb-2" style={{ fontFamily: THEME.font, color: isMinimalist ? '#AAA' : '#666' }}>
+                                            TOTAL TIME
+                                        </div>
+                                        <div className="text-2xl font-bold" style={{ 
+                                            fontFamily: THEME.font, 
+                                            color: isMinimalist ? '#FFF' : (isNeutral ? '#000' : '#4080FF')
+                                        }}>
+                                            {detailedStats.hours > 0 ? `${detailedStats.hours}h ` : ''}{detailedStats.minutes}m
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Quests Progress Card */}
+                                    <div className="p-3 border-2 rounded-lg text-center col-span-2 md:col-span-1" style={{
+                                        backgroundColor: isMinimalist ? '#000' : (isNeutral ? '#E8E8E8' : '#FFB6C1'),
+                                        borderColor: isMinimalist ? '#FFF' : '#000'
+                                    }}>
+                                        <div className="text-xs font-bold mb-2" style={{ fontFamily: THEME.font, color: isMinimalist ? '#AAA' : '#666' }}>
+                                            QUESTS CLEARED
+                                        </div>
+                                        <div className="text-2xl font-bold" style={{ 
+                                            fontFamily: THEME.font, 
+                                            color: isMinimalist ? '#FFF' : (isNeutral ? '#000' : '#FF9020')
+                                        }}>
+                                            {detailedStats.completedQuests}/{detailedStats.totalQuests}
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {/* Summary Text */}
+                                <div className="mt-4 p-3 border-2 rounded-lg" style={{
+                                    backgroundColor: isMinimalist ? '#1a1a1a' : (isNeutral ? '#F5F5F5' : '#FFF'),
+                                    borderColor: isMinimalist ? '#FFF' : '#000'
+                                }}>
+                                    <p className="text-xs text-center" style={{ 
+                                        fontFamily: THEME.font, 
+                                        color: isMinimalist ? '#CCC' : '#666',
+                                        lineHeight: '1.6'
+                                    }}>
+                                        {detailedStats.completedQuests === 0 
+                                            ? "No quests cleared yet. Start your journey!"
+                                            : detailedStats.percentage === 100
+                                                ? "🎉 WORLD COMPLETE! You've mastered this subject!"
+                                                : `You've cleared ${detailedStats.completedQuests} quest${detailedStats.completedQuests !== 1 ? 's' : ''} and spent ${formatHours(detailedStats.totalMinutes)} studying. ${detailedStats.totalQuests - detailedStats.completedQuests} quest${(detailedStats.totalQuests - detailedStats.completedQuests) !== 1 ? 's' : ''} remaining!`
+                                        }
+                                    </p>
                                 </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 );
             })}

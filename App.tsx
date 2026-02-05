@@ -24,32 +24,24 @@ const MENU_ITEMS = [
     title: 'Timer', 
     colorType: 'vibrantRed' as const,
     icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-      {/* Relógio Retrô/Pixelado */}
-      {/* Corpo circular do relógio (pixelado) */}
-      <rect x="7" y="7" width="10" height="10" fill="currentColor"/>
-      {/* Corte dos cantos para simular círculo pixelado */}
-      <rect x="7" y="7" width="2" height="2" fill="none"/>
-      <rect x="15" y="7" width="2" height="2" fill="none"/>
-      <rect x="7" y="15" width="2" height="2" fill="none"/>
-      <rect x="15" y="15" width="2" height="2" fill="none"/>
-      {/* Cantos arredondados pixelados */}
+      {/* Ampulheta Pixelada */}
+      {/* Topo */}
+      <rect x="7" y="4" width="10" height="2" fill="currentColor"/>
+      {/* Parte superior do corpo */}
       <rect x="8" y="6" width="8" height="1" fill="currentColor"/>
-      <rect x="6" y="8" width="1" height="8" fill="currentColor"/>
-      <rect x="17" y="8" width="1" height="8" fill="currentColor"/>
+      <rect x="9" y="7" width="6" height="1" fill="currentColor"/>
+      <rect x="10" y="8" width="4" height="1" fill="currentColor"/>
+      {/* Centro (estreito) */}
+      <rect x="11" y="9" width="2" height="2" fill="currentColor"/>
+      <rect x="11" y="13" width="2" height="2" fill="currentColor"/>
+      {/* Parte inferior do corpo */}
+      <rect x="10" y="15" width="4" height="1" fill="currentColor"/>
+      <rect x="9" y="16" width="6" height="1" fill="currentColor"/>
       <rect x="8" y="17" width="8" height="1" fill="currentColor"/>
-      {/* Topo do relógio (botão) */}
-      <rect x="11" y="4" width="2" height="2" fill="currentColor"/>
-      {/* Centro do relógio */}
-      <rect x="11.5" y="11.5" width="1" height="1" fill="currentColor"/>
-      {/* Ponteiro das horas (curto, para 3 horas) */}
-      <rect x="12" y="12" width="3" height="1" fill="currentColor"/>
-      {/* Ponteiro dos minutos (longo, para 12) */}
-      <rect x="12" y="9" width="1" height="3" fill="currentColor"/>
-      {/* Marcações de horas (12, 3, 6, 9) */}
-      <rect x="12" y="8" width="1" height="1" fill="currentColor" opacity="0.6"/>
-      <rect x="16" y="12" width="1" height="1" fill="currentColor" opacity="0.6"/>
-      <rect x="12" y="16" width="1" height="1" fill="currentColor" opacity="0.6"/>
-      <rect x="8" y="12" width="1" height="1" fill="currentColor" opacity="0.6"/>
+      {/* Base */}
+      <rect x="7" y="18" width="10" height="2" fill="currentColor"/>
+      {/* Areia caindo */}
+      <rect x="11" y="11" width="2" height="2" fill="currentColor" opacity="0.5"/>
     </svg>
   },
   { 

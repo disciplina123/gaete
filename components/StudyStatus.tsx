@@ -325,7 +325,7 @@ export default function StudyStatus({ subjects, studyLog, questionLog, subjectTi
                             className="w-full p-4 text-left transition-transform hover:-translate-y-1"
                         >
                             {/* Header Row */}
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                 <div className="flex items-center gap-3">
                                     <span className="font-bold text-lg md:text-xl truncate pr-2 uppercase drop-shadow-sm" 
                                           style={{ fontFamily: THEME.font, color: isMinimalist ? '#FFF' : '#000' }}>
@@ -342,29 +342,6 @@ export default function StudyStatus({ subjects, studyLog, questionLog, subjectTi
                                     >
                                         <path d="M7 10L12 15L17 10" stroke={isMinimalist ? '#FFF' : '#000'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                     </svg>
-                                </div>
-                            </div>
-                            
-                            {/* Progress Bar Container */}
-                            <div className="relative">
-                                <div className="flex justify-between text-[10px] mb-1 font-bold" style={{ fontFamily: THEME.font, color: isMinimalist ? '#CCC' : '#666' }}>
-                                    <span>PROGRESS</span>
-                                    <span>{detailedStats.percentage}%</span>
-                                </div>
-                                <div className="w-full h-6 border-4 rounded-full overflow-hidden relative" 
-                                     style={{ 
-                                         borderColor: isMinimalist ? '#FFF' : '#000', 
-                                         backgroundColor: isMinimalist ? '#000' : '#FFF' 
-                                     }}>
-                                    <div className="h-full transition-all duration-1000 ease-out flex items-center justify-end pr-2"
-                                         style={{ 
-                                             width: `${detailedStats.percentage}%`, 
-                                             backgroundColor: isMinimalist ? '#FFF' : (isNeutral ? '#808080' : colors.green.main),
-                                             backgroundImage: (isMinimalist || isNeutral) ? 'none' : `linear-gradient(45deg, rgba(255,255,255,.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, transparent 75%, transparent)`,
-                                             backgroundSize: '1rem 1rem'
-                                         }}
-                                    >
-                                    </div>
                                 </div>
                             </div>
                         </button>

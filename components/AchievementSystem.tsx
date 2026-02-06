@@ -69,7 +69,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_30min',
     name: 'PRIMEIRO PASSO',
     description: '30 MIN',
-    icon: '▫',
+    icon: '⏱️',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 30 }
@@ -78,7 +78,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_1h',
     name: 'INICIANTE',
     description: '1 HORA',
-    icon: '▪',
+    icon: '🕐',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 60 }
@@ -87,7 +87,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_3h',
     name: 'COMPROMETIDO',
     description: '3 HORAS',
-    icon: '◾',
+    icon: '⏰',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 180 }
@@ -96,7 +96,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_10h',
     name: 'PERSISTENTE',
     description: '10 HORAS',
-    icon: '◼',
+    icon: '⌚',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 600 }
@@ -105,7 +105,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_25h',
     name: 'DEDICADO',
     description: '25 HORAS',
-    icon: '■',
+    icon: '🕰️',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 1500 }
@@ -114,7 +114,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_50h',
     name: 'ESTUDIOSO',
     description: '50 HORAS',
-    icon: '▣',
+    icon: '⏳',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 3000 }
@@ -123,7 +123,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_100h',
     name: 'CENTURIAO',
     description: '100 HORAS',
-    icon: '▦',
+    icon: '⌛',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 6000 }
@@ -132,7 +132,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_200h',
     name: 'MARATONISTA',
     description: '200 HORAS',
-    icon: '▧',
+    icon: '🏃',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 12000 }
@@ -141,7 +141,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'time_500h',
     name: 'LENDA',
     description: '500 HORAS',
-    icon: '▩',
+    icon: '👑',
     category: 'time',
     unlocked: false,
     requirement: { type: 'total_minutes', target: 30000 }
@@ -152,7 +152,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_2d',
     name: 'COMECANDO',
     description: '2 DIAS',
-    icon: '▸',
+    icon: '🌱',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 2 }
@@ -161,7 +161,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_3d',
     name: 'AQUECENDO',
     description: '3 DIAS',
-    icon: '▹',
+    icon: '🔥',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 3 }
@@ -170,7 +170,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_5d',
     name: 'SEMANA UTIL',
     description: '5 DIAS',
-    icon: '▶',
+    icon: '💪',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 5 }
@@ -179,7 +179,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_7d',
     name: 'SEMANA FORTE',
     description: '7 DIAS',
-    icon: '►',
+    icon: '⚡',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 7 }
@@ -188,7 +188,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_14d',
     name: 'DUAS SEMANAS',
     description: '14 DIAS',
-    icon: '▻',
+    icon: '🌟',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 14 }
@@ -197,7 +197,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_21d',
     name: 'HABITO',
     description: '21 DIAS',
-    icon: '▮',
+    icon: '🎯',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 21 }
@@ -206,7 +206,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_30d',
     name: 'MES INTEIRO',
     description: '30 DIAS',
-    icon: '▰',
+    icon: '🏆',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 30 }
@@ -215,7 +215,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_60d',
     name: 'IMPARAVEL',
     description: '60 DIAS',
-    icon: '▱',
+    icon: '💎',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 60 }
@@ -224,7 +224,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'streak_100d',
     name: 'INABALAVEL',
     description: '100 DIAS',
-    icon: '▬',
+    icon: '🔱',
     category: 'streak',
     unlocked: false,
     requirement: { type: 'streak_days', target: 100 }
@@ -235,7 +235,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_5',
     name: 'CURIOSO',
     description: '5 QUESTOES',
-    icon: '▫',
+    icon: '❓',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'total_questions', target: 5 }
@@ -244,7 +244,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_25',
     name: 'PRATICANDO',
     description: '25 QUESTOES',
-    icon: '▪',
+    icon: '📝',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'total_questions', target: 25 }
@@ -253,7 +253,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_50_correct',
     name: 'ACERTADOR',
     description: '50 CORRETAS',
-    icon: '◽',
+    icon: '✅',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_correct', target: 50 }
@@ -262,7 +262,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_100',
     name: 'CENTENAR',
     description: '100 QUESTOES',
-    icon: '◾',
+    icon: '💯',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'total_questions', target: 100 }
@@ -271,7 +271,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_150_correct',
     name: 'EXPERT',
     description: '150 CORRETAS',
-    icon: '◼',
+    icon: '🎓',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_correct', target: 150 }
@@ -280,7 +280,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_75_accuracy',
     name: 'PRECISO',
     description: '75% (50+)',
-    icon: '▣',
+    icon: '🎯',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_accuracy', target: 75 }
@@ -289,7 +289,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_300_correct',
     name: 'TREZENTOS',
     description: '300 CORRETAS',
-    icon: '▦',
+    icon: '🌟',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_correct', target: 300 }
@@ -298,7 +298,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_85_accuracy',
     name: 'MESTRE',
     description: '85% (100+)',
-    icon: '▧',
+    icon: '🏅',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_accuracy', target: 85 }
@@ -307,7 +307,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'questions_500_correct',
     name: 'GENIO',
     description: '500 CORRETAS',
-    icon: '▩',
+    icon: '🧠',
     category: 'questions',
     unlocked: false,
     requirement: { type: 'questions_correct', target: 500 }
@@ -318,7 +318,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_1_subject',
     name: 'PRIMEIRA',
     description: '1 MATERIA',
-    icon: '◂',
+    icon: '📖',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'subjects_created', target: 1 }
@@ -327,7 +327,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_3_subjects',
     name: 'ORGANIZADO',
     description: '3 MATERIAS',
-    icon: '◃',
+    icon: '📚',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'subjects_created', target: 3 }
@@ -336,7 +336,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_5_books',
     name: 'BIBLIOTECARIO',
     description: '5 LIVROS',
-    icon: '◄',
+    icon: '📕',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'books_created', target: 5 }
@@ -345,7 +345,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_5_subjects',
     name: 'MULTITAREFA',
     description: '5 MATERIAS',
-    icon: '◅',
+    icon: '🎒',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'subjects_created', target: 5 }
@@ -354,7 +354,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_10_quests',
     name: 'PLANEJADOR',
     description: '10 QUESTS',
-    icon: '▀',
+    icon: '📋',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'quests_created', target: 10 }
@@ -363,7 +363,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_15_books',
     name: 'COLECIONADOR',
     description: '15 LIVROS',
-    icon: '▄',
+    icon: '📚',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'books_created', target: 15 }
@@ -372,7 +372,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_8_subjects',
     name: 'POLIMATA',
     description: '8 MATERIAS',
-    icon: '█',
+    icon: '🎓',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'subjects_created', target: 8 }
@@ -381,7 +381,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_50_quests',
     name: 'SUPER PLANEJADOR',
     description: '50 QUESTS',
-    icon: '▌',
+    icon: '🗂️',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'quests_created', target: 50 }
@@ -390,7 +390,7 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     id: 'org_100_quests',
     name: 'MESTRE PLANEJADOR',
     description: '100 QUESTS',
-    icon: '▐',
+    icon: '🏛️',
     category: 'organization',
     unlocked: false,
     requirement: { type: 'quests_created', target: 100 }

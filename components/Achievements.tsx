@@ -98,7 +98,7 @@ export default function Achievements({
     return (
       <div
         key={achievement.id}
-        className="relative p-3 border-4 flex flex-col items-center justify-center gap-1"
+        className="relative p-3 border-4 flex flex-col items-center justify-center gap-2"
         style={{
           backgroundColor: achievement.unlocked
             ? getCategoryBg(achievement.category)
@@ -109,7 +109,7 @@ export default function Achievements({
           boxShadow: achievement.unlocked 
             ? (isMinimalist ? '4px 4px 0px #FFF' : (isNeutral ? '4px 4px 0px rgba(0,0,0,0.3)' : '4px 4px 0px rgba(0,0,0,0.6)'))
             : (isMinimalist ? '2px 2px 0px #444' : '2px 2px 0px rgba(0,0,0,0.4)'),
-          minHeight: '100px',
+          minHeight: '120px',
           imageRendering: 'pixelated' as const,
           cursor: 'pointer',
           transition: 'transform 0.1s',
@@ -125,44 +125,49 @@ export default function Achievements({
           e.currentTarget.style.transform = 'scale(1)';
         }}
       >
-        {/* Icon - Larger and bolder */}
+        {/* Icon - Muito maior e mais visível */}
         <div 
-          className="text-4xl mb-1"
+          className="text-5xl mb-1"
           style={{
             filter: achievement.unlocked ? 'none' : 'grayscale(100%)',
             textShadow: achievement.unlocked 
-              ? (isMinimalist ? 'none' : (isNeutral ? 'none' : '2px 2px 0px rgba(0,0,0,0.8)'))
-              : 'none'
+              ? (isMinimalist ? 'none' : (isNeutral ? 'none' : '3px 3px 0px rgba(0,0,0,0.8)'))
+              : 'none',
+            opacity: achievement.unlocked ? 1 : 0.5
           }}
         >
           {achievement.icon}
         </div>
         
-        {/* Name - Muito mais visível */}
+        {/* Name - Muito mais destacado */}
         <div 
-          className="text-[11px] font-bold text-center leading-tight px-1"
+          className="text-[12px] font-bold text-center leading-tight px-1"
           style={{ 
             fontFamily: THEME.font,
             color: achievement.unlocked 
-              ? (isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#E0E0E0' : '#202020') : getCategoryColor(achievement.category)))
+              ? (isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#FFFFFF' : '#000000') : getCategoryColor(achievement.category)))
               : (isMinimalist ? '#888' : (isNeutral ? (neutralPalette === 'dark' ? '#808080' : '#606060') : '#C0C0C0')),
             textShadow: achievement.unlocked && !isMinimalist && !isNeutral 
-              ? '1px 1px 0px rgba(0,0,0,0.8)' 
+              ? '2px 2px 0px rgba(0,0,0,0.9)' 
               : 'none',
-            WebkitTextStroke: achievement.unlocked && !isMinimalist && !isNeutral ? '0.5px rgba(0,0,0,0.5)' : '0px'
+            WebkitTextStroke: achievement.unlocked && !isMinimalist && !isNeutral ? '0.8px rgba(0,0,0,0.6)' : '0px',
+            letterSpacing: '0.5px'
           }}
         >
           {achievement.name.toUpperCase()}
         </div>
 
-        {/* Description - Muito mais visível */}
+        {/* Description - Mais visível */}
         <div 
-          className="text-[10px] font-bold text-center"
+          className="text-[10px] font-bold text-center px-1"
           style={{ 
             fontFamily: THEME.font,
             color: achievement.unlocked 
-              ? (isMinimalist ? '#CCC' : (isNeutral ? (neutralPalette === 'dark' ? '#A0A0A0' : '#404040') : '#FFFFFF'))
-              : (isMinimalist ? '#666' : (isNeutral ? (neutralPalette === 'dark' ? '#606060' : '#808080') : '#A0A0A0'))
+              ? (isMinimalist ? '#DDD' : (isNeutral ? (neutralPalette === 'dark' ? '#C0C0C0' : '#303030') : '#FFFFFF'))
+              : (isMinimalist ? '#666' : (isNeutral ? (neutralPalette === 'dark' ? '#606060' : '#808080') : '#A0A0A0')),
+            textShadow: achievement.unlocked && !isMinimalist && !isNeutral 
+              ? '1px 1px 0px rgba(0,0,0,0.7)' 
+              : 'none'
           }}
         >
           {achievement.description}
@@ -184,7 +189,7 @@ export default function Achievements({
         {/* Locked overlay effect */}
         {!achievement.unlocked && (
           <div 
-            className="absolute inset-0 flex items-center justify-center text-3xl opacity-30 pointer-events-none"
+            className="absolute inset-0 flex items-center justify-center text-4xl opacity-30 pointer-events-none"
             style={{
               color: isMinimalist ? '#FFF' : '#000',
               fontFamily: THEME.font
@@ -205,9 +210,9 @@ export default function Achievements({
       }}
     >
       <div className="max-w-7xl mx-auto">
-        {/* Header Compacto */}
+        {/* Header com Tier em destaque */}
         <div 
-          className="p-4 border-4 mb-4"
+          className="p-6 border-4 mb-4"
           style={{
             backgroundColor: isMinimalist ? '#000' : (isNeutral ? (neutralPalette === 'dark' ? '#1A1A1A' : '#E0E0E0') : colors.yellow.main),
             borderColor: isMinimalist ? '#FFF' : (isNeutral ? '#404040' : '#000'),
@@ -215,46 +220,110 @@ export default function Achievements({
             imageRendering: 'pixelated' as const
           }}
         >
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 
-                className="text-2xl font-bold mb-1"
-                style={{ 
-                  fontFamily: THEME.font,
-                  color: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#E0E0E0' : '#202020') : '#000'),
-                  textShadow: isMinimalist ? 'none' : (isNeutral ? 'none' : '3px 3px 0px rgba(0,0,0,0.3)'),
-                  WebkitTextStroke: isMinimalist ? '0px' : (isNeutral ? '0px' : '1px rgba(0,0,0,0.3)')
-                }}
-              >
-                ★ CONQUISTAS ★
-              </h1>
-              <p 
-                className="text-[10px] font-bold"
-                style={{ 
-                  fontFamily: THEME.font,
-                  color: isMinimalist ? '#CCC' : (isNeutral ? (neutralPalette === 'dark' ? '#A0A0A0' : '#606060') : '#000')
-                }}
-              >
-                {unlockedCount}/{totalCount} DESBLOQUEADAS • TIER: {currentTier.name.toUpperCase()}
-              </p>
-              {nextTier && (
-                <p 
-                  className="text-[9px] font-bold mt-1"
-                  style={{ 
-                    fontFamily: THEME.font,
-                    color: isMinimalist ? '#AAA' : (isNeutral ? (neutralPalette === 'dark' ? '#808080' : '#808080') : '#000'),
-                    opacity: 0.7
+          <div className="flex items-center justify-between gap-6">
+            {/* Lado Esquerdo - Tier em Destaque */}
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-3">
+                <div 
+                  className="text-5xl"
+                  style={{
+                    filter: isMinimalist ? 'none' : 'drop-shadow(3px 3px 2px rgba(0,0,0,0.5))'
                   }}
                 >
-                  PROXIMO: {nextTier.name.toUpperCase()} ({nextTier.achievementsRequired - unlockedCount} RESTANTES)
-                </p>
-              )}
+                  {currentTier.name === 'Mestre' ? '👑' : 
+                   currentTier.name === 'Especialista' ? '💎' : 
+                   currentTier.name === 'Estudioso' ? '🎓' :
+                   currentTier.name === 'Dedicado' ? '⭐' :
+                   currentTier.name === 'Aprendiz' ? '🌟' : '🌱'}
+                </div>
+                <div>
+                  <h1 
+                    className="text-4xl font-bold leading-none mb-1"
+                    style={{ 
+                      fontFamily: THEME.font,
+                      color: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#FFF' : '#000') : '#000'),
+                      textShadow: isMinimalist ? 'none' : (isNeutral ? 'none' : '4px 4px 0px rgba(0,0,0,0.3)'),
+                      WebkitTextStroke: isMinimalist ? '0px' : (isNeutral ? '0px' : '1.5px rgba(0,0,0,0.2)')
+                    }}
+                  >
+                    {currentTier.name.toUpperCase()}
+                  </h1>
+                  <p 
+                    className="text-sm font-bold"
+                    style={{ 
+                      fontFamily: THEME.font,
+                      color: isMinimalist ? '#AAA' : (isNeutral ? (neutralPalette === 'dark' ? '#B0B0B0' : '#505050') : '#000'),
+                      opacity: 0.8
+                    }}
+                  >
+                    {currentTier.description}
+                  </p>
+                </div>
+              </div>
+              
+              {/* Info de conquistas */}
+              <div className="flex gap-4 items-center">
+                <div>
+                  <p 
+                    className="text-xs font-bold mb-1"
+                    style={{ 
+                      fontFamily: THEME.font,
+                      color: isMinimalist ? '#888' : (isNeutral ? (neutralPalette === 'dark' ? '#808080' : '#606060') : '#000'),
+                      opacity: 0.7
+                    }}
+                  >
+                    CONQUISTAS
+                  </p>
+                  <p 
+                    className="text-2xl font-bold"
+                    style={{ 
+                      fontFamily: THEME.font,
+                      color: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#E0E0E0' : '#202020') : '#000')
+                    }}
+                  >
+                    {unlockedCount}/{totalCount}
+                  </p>
+                </div>
+                
+                {nextTier && (
+                  <div className="flex-1">
+                    <p 
+                      className="text-xs font-bold mb-1"
+                      style={{ 
+                        fontFamily: THEME.font,
+                        color: isMinimalist ? '#888' : (isNeutral ? (neutralPalette === 'dark' ? '#808080' : '#606060') : '#000'),
+                        opacity: 0.7
+                      }}
+                    >
+                      PRÓXIMO: {nextTier.name.toUpperCase()}
+                    </p>
+                    <p 
+                      className="text-sm font-bold"
+                      style={{ 
+                        fontFamily: THEME.font,
+                        color: isMinimalist ? '#CCC' : (isNeutral ? (neutralPalette === 'dark' ? '#A0A0A0' : '#404040') : '#000')
+                      }}
+                    >
+                      Faltam {nextTier.achievementsRequired - unlockedCount} conquistas
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
             
-            {/* Progress bar - More retro */}
-            <div className="w-40">
+            {/* Lado Direito - Progress bar maior */}
+            <div className="w-48">
+              <p 
+                className="text-xs font-bold mb-2 text-center"
+                style={{ 
+                  fontFamily: THEME.font,
+                  color: isMinimalist ? '#AAA' : (isNeutral ? (neutralPalette === 'dark' ? '#A0A0A0' : '#606060') : '#000')
+                }}
+              >
+                PROGRESSO TOTAL
+              </p>
               <div 
-                className="h-4 border-4 relative"
+                className="h-8 border-4 relative mb-2"
                 style={{
                   backgroundColor: isMinimalist ? '#000' : (isNeutral ? (neutralPalette === 'dark' ? '#0A0A0A' : '#C0C0C0') : '#404040'),
                   borderColor: isMinimalist ? '#FFF' : '#000',
@@ -267,15 +336,16 @@ export default function Achievements({
                     width: `${(unlockedCount / totalCount) * 100}%`,
                     backgroundColor: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#80B080' : '#60A060') : colors.green.main),
                     backgroundImage: isMinimalist ? 'none' : 'linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.2) 25%, rgba(255,255,255,0.2) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.2) 75%)',
-                    backgroundSize: '8px 8px'
+                    backgroundSize: '12px 12px'
                   }}
                 />
               </div>
               <p 
-                className="text-[8px] text-center mt-1 font-bold"
+                className="text-2xl text-center font-bold"
                 style={{ 
                   fontFamily: THEME.font,
-                  color: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#E0E0E0' : '#202020') : '#000')
+                  color: isMinimalist ? '#FFF' : (isNeutral ? (neutralPalette === 'dark' ? '#E0E0E0' : '#202020') : '#000'),
+                  textShadow: isMinimalist ? 'none' : (isNeutral ? 'none' : '2px 2px 0px rgba(0,0,0,0.3)')
                 }}
               >
                 {Math.floor((unlockedCount / totalCount) * 100)}%
